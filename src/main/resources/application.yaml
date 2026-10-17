@@ -1,6 +1,6 @@
 spring:
   application:
-    name: demo
+    name: didgeridoo
 
   datasource:
     url: jdbc:postgresql://localhost:5432/db
