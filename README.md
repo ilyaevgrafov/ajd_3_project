@@ -8,10 +8,15 @@
 
 ## Технологии
 
-- Java
+- Java 17
 - Spring Boot
-- PostgreSQL
+- Spring Web MVC
 - Spring Data JPA
+- Hibernate
+- Jakarta Bean Validation
+- PostgreSQL
+- Flyway
+- OpenAPI 3.1
 - Maven
 - Docker Compose
 
@@ -38,11 +43,3 @@
    ```bash
    ./mvnw spring-boot:run
    ```
-
-## Документация
-
-- [Функциональные требования](docs/requirements.md)
-- [План разработки](docs/roadmap.md)
-- [Модель базы данных](docs/architecture/database/README.md)
-- [ER-диаграмма](docs/architecture/database/database.png)
-- [Соглашения по Git](docs/git-conventions.md)
