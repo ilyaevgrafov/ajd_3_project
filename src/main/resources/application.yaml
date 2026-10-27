@@ -2,6 +2,10 @@ spring:
   application:
     name: didgeridoo
 
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
   datasource:
     url: jdbc:postgresql://localhost:5432/db
     username: user
