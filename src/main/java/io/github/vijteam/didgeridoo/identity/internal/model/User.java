@@ -80,6 +80,14 @@ public class User {
         return this.passwordHash;
     }
 
+    public Instant getCreatedAt() {
+        return this.createdAt;
+    }
+    
+    public Instant getUpdatedAt() {
+        return this.updatedAt;
+    }
+
     public void changeDisplayName(String newDisplayName) {
         this.displayName = newDisplayName;
     }
