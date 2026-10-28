@@ -2,7 +2,7 @@
 
 Система управления задачами для персональной и командной работы.
 
-Приложение позволяет организовывать задачи в независимых пространствах, распределять их между участниками, отслеживать выполнение и анализировать результаты работы.
+Didgeridoo позволяет организовывать задачи в независимых пространствах, распределять их между участниками, отслеживать выполнение и анализировать результаты работы.
 
 **Статус проекта:** в разработке.
 
@@ -11,8 +11,7 @@
 - Java 17
 - Spring Boot
 - Spring Web MVC
-- Spring Data JPA
-- Hibernate
+- Spring Data JPA / Hibernate
 - Jakarta Bean Validation
 - PostgreSQL
 - Flyway
@@ -20,40 +19,49 @@
 - Maven
 - Docker Compose
 
-## Запуск
+## Локальный запуск
 
-**Требования:** JDK совместимой с проектом версии (17), Docker с Docker Compose.
+### Требования
 
-1. Запустить базу данных:
+- JDK 17
+- Docker с поддержкой Docker Compose
 
-   ```bash
-   docker compose up -d
-   ```
+### 1. Запуск базы данных
 
-### 2. Запуск веб-приложения
+Из корня проекта выполнить:
 
-   Windows:
+```bash
+docker compose up -d
+```
 
-   ```powershell
-   .\mvnw.cmd spring-boot:run
-   ```
+### 2. Запуск приложения
 
-   Linux / macOS:
+**Windows (PowerShell):**
 
-   ```bash
-   ./mvnw spring-boot:run
-   ```
+```powershell
+.\mvnw.cmd spring-boot:run
+```
 
-## 2. Запуск тестов
+**Linux / macOS:**
 
-   Windows:
+```bash
+./mvnw spring-boot:run
+```
 
-   ```powershell
-   .\mvnw.cmd test
-   ```
+## Тестирование
 
-   Linux / macOS:
+Для запуска всех тестов приложения:
 
-   ```bash
-   ./mvnw test
-   ```
+**Windows (PowerShell):**
+
+```powershell
+.\mvnw.cmd test
+```
+
+**Linux / macOS:**
+
+```bash
+./mvnw test
+```
+
+Для интеграционных тестов, использующих PostgreSQL, база данных должна быть доступна.
