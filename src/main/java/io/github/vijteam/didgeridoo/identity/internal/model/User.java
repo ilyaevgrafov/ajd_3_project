@@ -13,82 +13,97 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-@Entity 
-@Table (name = "users")
+@Entity
+@Table(name = "users")
 public class User {
-    @Id 
+
+    @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(columnDefinition = "citext")
+    @Column(nullable = false, columnDefinition = "citext")
     private String username;
 
-    @Column(name = "display_name")
+    @Column(name = "display_name", nullable = false, length = 100)
     private String displayName;
-    
-    @Column(columnDefinition = "citext")
+
+    @Column(nullable = false, columnDefinition = "citext")
     private String email;
 
-    @Column(name = "password_hash")
+    @Column(name = "password_hash", nullable = false, length = 255)
     private String passwordHash;
 
     @Column(name = "email_verified_at")
     private Instant emailVerifiedAt;
 
-    @Column(name = "avatar_storage_key")
+    @Column(name = "avatar_storage_key", length = 500)
     private String avatarStorageKey;
 
-    @UpdateTimestamp
-    @Column(name = "updated_at")
-    private Instant updatedAt;
-
     @CreationTimestamp
-    @Column(name = "created_at", updatable = false)
+    @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
 
-    protected User() {}
+    @UpdateTimestamp
+    @Column(name = "updated_at", nullable = false)
+    private Instant updatedAt;
+
+    protected User() {
+        // Required by JPA
+    }
 
     public User(
-        String username,
-        String displayName,
-        String email,
-        String passwordHash
+            String username,
+            String displayName,
+            String email,
+            String passwordHash
     ) {
-        this.username = username;
-        this.displayName = displayName;
-        this.email = email;
-        this.passwordHash = passwordHash;
+        this.username = UserFieldValidator.username(username);
+        this.displayName = UserFieldValidator.displayName(displayName);
+        this.email = UserFieldValidator.email(email);
+        this.passwordHash = UserFieldValidator.passwordHash(passwordHash);
     }
 
-    public UUID getId() {
-        return this.id;
-    }
-
-    public String getUsername() {
-        return this.username;
-    }
-
-    public String getDisplayName() {
-        return this.displayName;
-    }
-
-    public String getEmail() {
-        return this.email;
-    }
-
-    public String getPasswordHash() {
-        return this.passwordHash;
-    }
-
-    public Instant getCreatedAt() {
-        return this.createdAt;
-    }
-    
-    public Instant getUpdatedAt() {
-        return this.updatedAt;
+    public void changeUsername(String newUsername) {
+        this.username = UserFieldValidator.username(newUsername);
     }
 
     public void changeDisplayName(String newDisplayName) {
-        this.displayName = newDisplayName;
+        this.displayName = UserFieldValidator.displayName(newDisplayName);
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    public Instant getEmailVerifiedAt() {
+        return emailVerifiedAt;
+    }
+
+    public String getAvatarStorageKey() {
+        return avatarStorageKey;
+    }
+
+    public Instant getCreatedAt() {
+        return createdAt;
+    }
+
+    public Instant getUpdatedAt() {
+        return updatedAt;
     }
 }
