@@ -4,14 +4,28 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import io.github.vijteam.didgeridoo.identity.internal.model.User;
 
-
 public interface UserRepository extends JpaRepository<User, UUID> {
-    Optional<User> findByUsername(String username);
 
-    boolean existsByUsername(String username);
+    @Query(
+        value = "SELECT * FROM users WHERE username = CAST(:username AS citext)",
+        nativeQuery = true
+    )
+    Optional<User> findByUsername(@Param("username") String username);
 
-    boolean existsByEmail(String email);
+    @Query(
+        value = "SELECT EXISTS (SELECT 1 FROM users WHERE username = CAST(:username AS citext))",
+        nativeQuery = true
+    )
+    boolean existsByUsername(@Param("username") String username);
+
+    @Query(
+        value = "SELECT EXISTS (SELECT 1 FROM users WHERE email = CAST(:email AS citext))",
+        nativeQuery = true
+    )
+    boolean existsByEmail(@Param("email") String email);
 }
