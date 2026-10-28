@@ -30,7 +30,7 @@
    docker compose up -d
    ```
 
-2. Запустить приложение:
+### 2. Запуск веб-приложения
 
    Windows:
 
@@ -42,4 +42,18 @@
 
    ```bash
    ./mvnw spring-boot:run
+   ```
+
+## 2. Запуск тестов
+
+   Windows:
+
+   ```powershell
+   .\mvnw.cmd test
+   ```
+
+   Linux / macOS:
+
+   ```bash
+   ./mvnw test
    ```
