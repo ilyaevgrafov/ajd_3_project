@@ -47,6 +47,12 @@ class UserRepositoryTest {
         assertTrue(userRepository.existsByUsername("repoalice"));
         assertTrue(userRepository.existsByUsername("REPOALICE"));
         assertFalse(userRepository.existsByUsername("another_repo_user"));
+
+        User found = userRepository
+            .findByUsername("repoalice")
+            .orElseThrow();
+        
+        assertEquals("RepoAlice", found.getUsername());
     }
 
     @Test
