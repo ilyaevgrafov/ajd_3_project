@@ -8,6 +8,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Optional;
 
+import org.springframework.context.annotation.Import;
+import io.github.vijteam.didgeridoo.TestcontainersConfiguration;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,8 +20,9 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.transaction.annotation.Transactional;
 
-@SpringBootTest 
-@Transactional 
+@SpringBootTest
+@Import(TestcontainersConfiguration.class)
+@Transactional
 class UserRepositoryTest {
 
     @Autowired 
