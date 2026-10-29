@@ -6,9 +6,9 @@ import java.util.Set;
 import java.util.UUID;
 
 public interface UserDirectory {
-    Optional<UserSummary> findById(UUID userId);
+    Optional<UserSummary> findById(UUID id);
 
     Optional<UserSummary> findByUsername(String username);
 
-    Map<UUID, UserSummary> findByIds(Set<UUID> userIds);
+    Map<UUID, UserSummary> findByIds(Set<UUID> ids);
 }
